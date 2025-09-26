@@ -20,8 +20,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Grant execute permission to Tailwind CLI
-        run: chmod +x ./node_modules/.bin/tailwindcss
-
       - name: Run the build and deploy
         run: npm run deploy

@@ -20,19 +20,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Tailwind CLI to process CSS
-        run: npx tailwindcss -i ./src/index.css -o ./src/tailwind.output.css --minify
-
-      - name: Update index.js to import the new CSS file
-        run: |
-          sed -i "s|import './index.css';|import './tailwind.output.css';|" ./src/index.js
-
-      - name: Build the project
-        run: npx react-scripts build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          publish_branch: gh-pages
+      - name: Run the build and deploy
+        run: npm run deploy

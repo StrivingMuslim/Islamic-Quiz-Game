@@ -9,11 +9,10 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
-  "start": "react-scripts start",
-  "build": "npx tailwindcss -i ./src/index.css -o ./src/index.css && react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject"
-},
+    "start": "react-scripts start",
+    "build": "npx tailwindcss -i ./src/index.css -o ./src/index.css && react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "gh-pages": "^5.0.0",

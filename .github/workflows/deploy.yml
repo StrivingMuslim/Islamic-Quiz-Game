@@ -20,5 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run the build and deploy
-        run: npm run deploy
+      - name: Run build
+        run: npm run build
+
+      - name: Run deploy
+        run: npx gh-pages -d build --add

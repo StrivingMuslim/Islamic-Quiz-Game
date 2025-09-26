@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Set this to the branch you work on (e.g., 'main' or 'master')
+      - main
 
 jobs:
   build-and-deploy:
@@ -20,14 +20,19 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build the project
-        run: npm run build
+      - name: Run Tailwind CLI to process CSS
+        run: npx tailwindcss -i ./src/index.css -o ./src/tailwind.output.css --minify
 
-      - name: Configure and Deploy to GitHub Pages
+      - name: Update index.js to import the new CSS file
         run: |
-          npx tailwindcss init -p
-          git add .
-          git commit -m "Initialize Tailwind config"
-          npx gh-pages -d build --add
-        env:
-          GH_PAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          sed -i "s|import './index.css';|import './tailwind.output.css';|" ./src/index.js
+
+      - name: Build the project
+        run: npx react-scripts build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: gh-pages

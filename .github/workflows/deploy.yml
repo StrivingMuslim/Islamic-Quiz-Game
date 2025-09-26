@@ -20,11 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Tailwind CSS build
-        run: npm run build-tailwind
-
-      - name: Run React build
-        run: npm run build-react
+      - name: Build
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
